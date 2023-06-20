@@ -13,4 +13,8 @@ facts_list = read_facts()
 def read_random_fact():
     random_fact = random.choice(facts_list)
     return{'fact': random_fact}
-
+@app.post('/add')
+def add_fact(new_fact: str):
+    with open('facts.txt', 'a') as file:
+        file.write(new_fact + "\n")
+    return {"message": "Fact added successfully."}
